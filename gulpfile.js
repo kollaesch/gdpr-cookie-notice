@@ -57,7 +57,7 @@ function buildJSmin(cb) {
     "src/langs/en.js"
   ])
   .pipe(sourcemaps.init())
-  .pipe(concat("script.js"))
+  .pipe(concat("script.min.js"))
   .pipe(uglify())
   .pipe(sourcemaps.write("./"))
   .pipe(dest(config.javascript.path.dist));
