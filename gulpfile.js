@@ -3,7 +3,10 @@ const path = require("path"),
   // watch = require("gulp-watch"),
   sourcemaps = require("gulp-sourcemaps"),
   concat = require("gulp-concat"),
-  uglify = require("gulp-uglify"),
+  // uglify = require("gulp-uglify"),
+  // https://stackoverflow.com/questions/47439067/uglifyjs-throws-unexpected-token-keyword-const-with-node-modules
+  // umstellen gulp-uglify => gulp-uglify-es
+  uglify = require("gulp-uglify-es").default,
   notify = require("gulp-notify"),
   plumber = require("gulp-plumber"),
   sass = require("gulp-sass"),
@@ -16,9 +19,9 @@ htmlToJs = require("gulp-html-to-js");
 html2js = require("gulp-html2js");
 eslint = require("gulp-eslint");
 
-const { src, dest, watch, parallel, series } = require("gulp");
+var { src, dest, watch, parallel, series } = require("gulp");
 
-const config = {
+var config = {
   javascript: {
     path: {
       src: path.join("src/js"),
@@ -54,7 +57,8 @@ function buildJSmin(cb) {
     "node_modules/js-cookie/src/js.cookie.js",
     "src/js/templates.js",
     "src/js/script.js",
-    "src/langs/en.js"
+    "src/langs/en.js",
+    "src/langs/de.js"
   ])
   .pipe(sourcemaps.init())
   .pipe(concat("script.min.js"))
@@ -70,7 +74,8 @@ function buildJS(cb) {
       "node_modules/js-cookie/src/js.cookie.js",
       "src/js/templates.js",
       "src/js/script.js",
-      "src/langs/en.js"
+      "src/langs/en.js",
+      "src/langs/de.js"
     ])
     .pipe(sourcemaps.init())
     .pipe(concat("script.js"))
