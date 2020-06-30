@@ -308,3 +308,25 @@ function gdprCookieNotice(config) {
   }
 
 }
+var toggleCookieSetting = function (cookie) {
+  const cb = document.getElementById('gdpr-cookie-notice-cookie_' + cookie);
+  cb.checked = !cb.checked;
+}
+var disableCookieSetting = function (cookie) {
+  const cb = document.getElementById('gdpr-cookie-notice-cookie_' + cookie);
+  cb.checked = false;
+}
+
+function toggle() {
+  const cookies = ['performance', 'analytics', 'marketing']
+  cookies.forEach(function (cookie) {
+      toggleCookieSetting(cookie);
+  });
+}
+
+function deactivate() {
+  const cookies = ['performance', 'analytics', 'marketing']
+  cookies.forEach(function (cookie) {
+      disableCookieSetting(cookie);
+  });
+}
